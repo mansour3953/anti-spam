@@ -1,101 +1,93 @@
-{\rtf1\fbidis\ansi\ansicpg1256\deff0\deflang1065{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset178 B Titr;}{\f2\fnil\fcharset178{\*\fname Arial;}Arial (Arabic);}}
-{\colortbl ;\red0\green0\blue255;}
-{\*\generator Msftedit 5.41.21.2510;}\viewkind4\uc1\pard\ltrpar\sa200\sl276\slmult1\lang9\f0\fs22 #!/usr/bin/env bash\par
-\par
-THIS_DIR=$(cd $(dirname $0); pwd)\par
-cd $THIS_DIR\par
-\par
-install() \{\par
-\tab     cd tg\par
-\tab\tab sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test\par
-\tab\tab sudo apt-get install g++-4.7 -y c++-4.7 -y\par
-\tab\tab sudo apt-get update\par
-\tab\tab sudo apt-get upgrade\par
-\tab\tab sudo apt-get install libreadline-dev -y libconfig-dev -y libssl-dev -y lua5.2 -y liblua5.2-dev -y lua-socket -y lua-sec -y lua-expat -y libevent-dev -y make unzip git redis-server autoconf g++ -y libjansson-dev -y libpython-dev -y expat libexpat1-dev -y\par
-\tab\tab sudo apt-get install screen -y\par
-\tab\tab sudo apt-get install tmux -y\par
-\tab\tab sudo apt-get install libstdc++6 -y\par
-\tab\tab sudo apt-get install lua-lgi -y\par
-\tab\tab sudo apt-get install libnotify-dev -y\par
-\tab\tab wget {\field{\*\fldinst{HYPERLINK "https://valtman.name/files/telegram-cli-1222"}}{\fldrslt{\ul\cf1 https://valtman.name/files/telegram-cli-1222}}}\f0\fs22\par
-\tab\tab mv telegram-cli-1222 tgcli\par
-\tab\tab chmod +x tgcli\par
-\tab\tab cd ..\par
-\tab\tab chmod +x bot\par
-\tab\tab chmod +x tg\par
-\tab\tab chmod +x autobd.sh\par
-\}\par
-\par
-function print_logo() \{\par
-\tab green "          ____  ____     _____"\par
-\tab green "         |  _ )|  _ \\   |_   _|___ ____   __  __"\par
-\tab green "         |  _ \\| |_) )    | |/ .__|  _ \\_|  \\/  |"\par
-\tab green "         |____/|____/     |_|\\____/\\_____|_/\\/\\_|"\par
-\tab echo -e "\\n\\e[0m"\par
-\}\par
-\par
-function logo_play() \{\par
-    declare -A txtlogo\par
-    seconds="0.010"\par
-    txtlogo[1]=" ____  ____     _____"\par
-    txtlogo[2]="|  _ )|  _ \\   |_   _|___ ____   __  __"\par
-    txtlogo[3]="|  _ \\| |_) )    | |/ .__|  _ \\_|  \\/  |"\par
-    txtlogo[4]="|____/|____/     |_|\\____/\\_____|_/\\/\\_|"\par
-    printf "\\e[31m\\t"\par
-    for i in $\{!txtlogo[@]\}; do\par
-        for x in `seq 0 $\{#txtlogo[$i]\}`; do\par
-            printf "$\{txtlogo[$i]:$x:1\}"\par
-            sleep $seconds\par
-        done\par
-        printf "\\n\\t"\par
-    done\par
-    printf "\\n"\par
-\tab echo -e "\\e[0m"\par
-\}\par
-\par
-function TIGER_F59() \{\par
-\tab echo -e "\\e[0m"\par
-\tab green "     >>>>                       We Are Not Attacker                             "\par
-\tab green "     >>>>                       We Are Not Alliance                             "\par
-\tab white "     >>>>                       We Are Programmer                               "\par
-\tab white "     >>>>                       We Are The Best                                 "\par
-\tab red   "     >>>>                       We Are Family                                   "\par
-\tab red   "     >>>>                       @TIGER_F59                                     "\par
-\pard\ltrpar\sa200\sl276\slmult1                 red   "     >>>>                       \lang1065\b\f1\rtlch\'d3\'e6\'d1\'d3 \'ca\'d5\'cd\u1740?\'cd \'d4\'cf\'e5 \'ca\'e6\'d3\'d8 \'e3\'e4\'d5\'e6\'d1 \i\f2 :)\lang9\b0\i0\f0\ltrch                                      "\par
-\pard\ltrpar\sa200\sl276\slmult1\par
-\tab echo -e "\\e[0m"\par
-\}\par
-\par
-red() \{\par
-  printf '\\e[1;31m%s\\n\\e[0;39;49m' "$@"\par
-\}\par
-green() \{\par
-  printf '\\e[1;32m%s\\n\\e[0;39;49m' "$@"\par
-\}\par
-white() \{\par
-  printf '\\e[1;37m%s\\n\\e[0;39;49m' "$@"\par
-\}\par
-update() \{\par
-\tab git pull\par
-\}\par
-\par
-if [ "$1" = "install" ]; then\par
-\tab print_logo\par
-\tab TIGER_F59\par
-\tab logo_play\par
-\tab install\par
-  else\par
-if [ ! -f ./tg/tgcli ]; then\par
-    echo "tg not found"\par
-    echo "Run $0 install"\par
-    exit 1\par
- fi\par
-\tab print_logo\par
-\tab TIGER_F59\par
-\tab logo_play\par
-   #sudo service redis-server restart\par
-   ./tg/tgcli -s ./bot/bot.lua -l 1 -E $@\par
-   #./tg/tgcli -s ./bot/bot.lua $@\par
-fi\par
+#!/usr/bin/env bash
+
+THIS_DIR=$(cd $(dirname $0); pwd)
+cd $THIS_DIR
+
+install() {
+	    cd tg
+		sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
+		sudo apt-get install g++-4.7 -y c++-4.7 -y
+		sudo apt-get update
+		sudo apt-get upgrade
+		sudo apt-get install libreadline-dev -y libconfig-dev -y libssl-dev -y lua5.2 -y liblua5.2-dev -y lua-socket -y lua-sec -y lua-expat -y libevent-dev -y make unzip git redis-server autoconf g++ -y libjansson-dev -y libpython-dev -y expat libexpat1-dev -y
+		sudo apt-get install screen -y
+		sudo apt-get install tmux -y
+		sudo apt-get install libstdc++6 -y
+		sudo apt-get install lua-lgi -y
+		sudo apt-get install libnotify-dev -y
+		wget https://valtman.name/files/telegram-cli-1222
+		mv telegram-cli-1222 tgcli
+		chmod +x tgcli
+		cd ..
+		chmod +x bot
+		chmod +x tg
+		chmod +x autobd.sh
 }
- 
+
+function print_logo() {
+	green "          ____  ____     _____"
+	green "         |  _ )|  _ \   |_   _|___ ____   __  __"
+	green "         |  _ \| |_) )    | |/ .__|  _ \_|  \/  |"
+	green "         |____/|____/     |_|\____/\_____|_/\/\_|"
+	echo -e "\n\e[0m"
+}
+
+function logo_play() {
+    declare -A txtlogo
+    seconds="0.010"
+    txtlogo[1]=" ____  ____     _____"
+    txtlogo[2]="|  _ )|  _ \   |_   _|___ ____   __  __"
+    txtlogo[3]="|  _ \| |_) )    | |/ .__|  _ \_|  \/  |"
+    txtlogo[4]="|____/|____/     |_|\____/\_____|_/\/\_|"
+    printf "\e[31m\t"
+    for i in ${!txtlogo[@]}; do
+        for x in `seq 0 ${#txtlogo[$i]}`; do
+            printf "${txtlogo[$i]:$x:1}"
+            sleep $seconds
+        done
+        printf "\n\t"
+    done
+    printf "\n"
+	echo -e "\e[0m"
+}
+
+function TIGER_F59() {
+	echo -e "\e[0m"
+	green "     >>>>                       We Are Not Attacker                             "
+	green "     >>>>                       We Are Not Alliance                             "
+	white "     >>>>                       We Are Programmer                               "
+	white "     >>>>                       We Are The Best                                 "
+	red   "     >>>>                       We Are Family                                   "
+	red   "     >>>>                       @TIGER_F59                                     "
+	echo -e "\e[0m"
+}
+
+red() {
+  printf '\e[1;31m%s\n\e[0;39;49m' "$@"
+}
+green() {
+  printf '\e[1;32m%s\n\e[0;39;49m' "$@"
+}
+white() {
+  printf '\e[1;37m%s\n\e[0;39;49m' "$@"
+}
+update() {
+	git pull
+}
+
+if [ "$1" = "install" ]; then
+	print_logo
+	TIGER_F59	logo_play
+	install
+  else
+if [ ! -f ./tg/tgcli ]; then
+    echo "tg not found"
+    echo "Run $0 install"
+    exit 1
+ fi
+	print_logo
+	TIGER_F59	logo_play
+   #sudo service redis-server restart
+   ./tg/tgcli -s ./bot/bot.lua -l 1 -E $@
+   #./tg/tgcli -s ./bot/bot.lua $@
+fi
