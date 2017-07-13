@@ -11,7 +11,7 @@ ID Editor: https://telegram.me/us2911
 
 .بعد ترمینال رو باز کنید و روی سرورتون اینارو کپی و پست کنید و کار هایی که گفتیمو اعمال کنید 
 
-git clone https://github.com/mansour2911/tigr-anti-spam.git
+git clone https://github.com/mansour3953/anti-spam
 
 cd tigr-anti-spam
 
