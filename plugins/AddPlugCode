@@ -1,0 +1,32 @@
+-- Begin
+local function ToOfan(msg, matches)
+ if is_sudo(msg) and msg.reply_to_message_id_ ~= 0 then
+  if matches[1]:match('*') or matches[1]:match(':') or matches[1]:match('/') or matches[1]:match('|') or matches[1]:match('?') or matches[1]:match('\\') or matches[1]:match('>') or matches[1]:match('<') or matches[1]:match('\"') then
+	return '_Error! File name could not contain the chars_ / \\ < > \" : ? | \\* \n\n@TIGER_F59'
+  end
+ function msg_cb(TM, BD)
+  local text = BD.content_.text_
+  if text:len() >= 4088 then
+   return '_Message is so LARG!_\n\n@TIGER_F59'
+  else
+   local lenText = 1
+   while lenText ~= 0 do
+    text = text:trim()
+    text, lenText = text:gsub('^!+','')
+   end
+   local file = io.open('./plugins/'..matches[1]..'.lua', 'w')
+   file:write(text)
+   file:flush()
+   file:close()
+   tdcli.sendMessage(msg.to.id, msg.id, 1, '*Plugin* `'..matches[1]..'.lua` *was Saved!*\n\n@TIGER_F59', 0, 'md')
+  end
+ end
+ tdcli.getMessage(msg.to.id, msg.reply_id, msg_cb, nil)
+ end
+end
+
+return { patterns = { '^[/#!][Pp]lugin (.*)$' }, run = ToOfan }
+
+-- END
+-- By @ToOfan
+-- Channel: @TIGER_F59
